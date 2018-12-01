@@ -1,38 +1,55 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import ObservableArray from 'utils/ObservableArray';
+const Overlay = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  outline: none;
+`;
 
 export default class Keyboard extends React.Component {
   state = {
-    pressedKeys: [],
-    soundArray: ObservableArray((target, keys) => {
-      this.setState({
-        pressedKeys: target
-      })
-    })
+    pressedKeys: []
   };
 
-  handleKeyDown = document.addEventListener('keydown', event => {
-    if (event.repeat === false) {
-      this.state.soundArray.push(event.key);
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.pressedKeys.toString() === nextState.pressedKeys.toString()) {
+      return false;
     }
-  });
 
-  handleKeyUp = document.addEventListener('keyup', event => {
-    if (event.repeat === false) {
-      this.state.soundArray.pop(event.key);
-    }
-  });
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.keyDownHandler);
-    document.removeEventListener('keyup', this.keyUpHandler);
+    return true;
   }
 
-  // TODO: Add multiple key support
+  isAllowed = (key) => {
+    return  Object.keys(this.props.allowedKeys).includes(key)
+  }
+
+  handleKeyDown = event => {
+    if (this.state.pressedKeys.includes(event.key) || this.isAllowed(event.key) === false) {
+      return;
+    }
+
+    this.setState({
+      pressedKeys: [...this.state.pressedKeys, event.key]
+    });
+  };
+
+  handleKeyUp = event => {
+    this.setState({
+      pressedKeys: this.state.pressedKeys.filter(i => i !== event.key)
+    });
+  };
+
   render() {
     return (
-      <React.Fragment>{this.props.children(this.state.pressedKeys)}</React.Fragment>
+      <Overlay
+        tabIndex="0"
+        onKeyDown={this.handleKeyDown}
+        onKeyUp={this.handleKeyUp}
+      >
+        {this.props.children(this.state.pressedKeys)}
+      </Overlay>
     );
   }
 }

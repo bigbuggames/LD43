@@ -4,27 +4,28 @@ import ReactDOM from 'react-dom';
 import Keyboard from './Components/Keyboard/Keyboard';
 import SingSystem from './Components/SingSystem/SingSystem';
 
+import GameConfig from 'constants/Config';
+
+
 function Game() {
   return (
-    <Keyboard>
+    <Keyboard allowedKeys={GameConfig.effects}>
       {pressedKeys => (
-        <div>pressedKeys: {JSON.stringify(pressedKeys)}</div>
+        <SingSystem pressedKeys={pressedKeys}>
+          {(currentSingTime, handleSingTimeReset) => {
+            return (
+              <div>
+                <div>pressedKeys: {JSON.stringify(pressedKeys)}</div>
+                <div>singTime: {currentSingTime}</div>
+                <div onClick={handleSingTimeReset}>Reset time</div>
+              </div>
+            );
+          }}
+        </SingSystem>
       )}
     </Keyboard>
   );
 }
-
-        // <SingSystem pressedKeys={pressedKeys}>
-        //   {(currentSingTime, handleSingTimeReset) => {
-        //     return (
-        //       <div>
-        //         <div>pressedKeys: {pressedKeys}</div>
-        //         <div>singTime: {currentSingTime}</div>
-        //         <div onClick={handleSingTimeReset}>Reset time</div>
-        //       </div>
-        //     );
-        //   }}
-        // </SingSystem>
 
 
 const rootElement = document.getElementById('root');
