@@ -18,6 +18,11 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js'],
+    alias: {
+      constants: path.resolve(__dirname, '../src/constants'),
+      utils: path.resolve(__dirname, '../src/utils'),      
+      components: path.resolve(__dirname, '../src/components')
+    },
     plugins: [
       new DirectoryNamedWebpackPlugin()
     ]

@@ -8,7 +8,6 @@
     "react"
   ],
   "extends": [
-    "eslint:recommended",
     "plugin:react/recommended"
   ],
   "rules": {
@@ -20,7 +19,7 @@
     "no-undef": 0,
     "no-case-declarations": 0,
 
-    "arrow-parens": ["error", "always"],
+    // "arrow-parens": ["error", "always"],
     "arrow-spacing": "error",
     "spaced-comment": ["error", "always", {
       "line": {

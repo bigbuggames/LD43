@@ -1,44 +1,38 @@
 import React from 'react';
 
+import ObservableArray from 'utils/ObservableArray';
+
 export default class Keyboard extends React.Component {
   state = {
-    key: ''
+    pressedKeys: [],
+    soundArray: ObservableArray((target, keys) => {
+      this.setState({
+        pressedKeys: target
+      })
+    })
   };
 
-  componentDidMount() {
-    this.keyDownHandler = document.addEventListener('keydown', event => {
-      if (event.repeat === false) {
-        this.setState({
-          key: event.key
-        });
-      }
-    });
+  handleKeyDown = document.addEventListener('keydown', event => {
+    if (event.repeat === false) {
+      this.state.soundArray.push(event.key);
+    }
+  });
 
-    this.keyUpHandler = document.addEventListener('keyup', event => {
-      if (event.repeat === false) {
-        this.setState({
-          key: ''
-        });
-      }
-    });
-  }
+  handleKeyUp = document.addEventListener('keyup', event => {
+    if (event.repeat === false) {
+      this.state.soundArray.pop(event.key);
+    }
+  });
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.keyDownHandler);
-    document.removeEventListener('keydown', this.keyUpHandler);
-  }
-
-  /**
-   * Avoiding key repetition
-   */
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.key !== nextState.key;
+    document.removeEventListener('keyup', this.keyUpHandler);
   }
 
   // TODO: Add multiple key support
   render() {
     return (
-      <React.Fragment>{this.props.children(this.state.key)}</React.Fragment>
+      <React.Fragment>{this.props.children(this.state.pressedKeys)}</React.Fragment>
     );
   }
 }

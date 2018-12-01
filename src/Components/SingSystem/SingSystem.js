@@ -1,36 +1,44 @@
 import React from 'react';
 import { Howl, Howler } from 'howler';
 
-import Constants from '../../Constants/Config';
+import GameConfig from 'constants/Config';
 
 class SingSystem extends React.Component {
   state = {
-    currentSingTime: 0
+    currentSingTime: 0,
+    currentEffects: []
   };
 
   componentDidUpdate(prevProps) {
-    if (prevProps.keyCode === this.props.keyCode) {
+    if (
+      prevProps.keyCode === this.props.keyCode ||
+      this.state.currentEffects.includes(this.props.keyCode)
+    ) {
       return;
     }
 
-    this.triggerBirdSinging(this.props.keyCode, Constants.effects);
+    this.triggerBirdSinging(this.props.keyCode, GameConfig.effects);
   }
 
   triggerBirdSinging = (key, effects) => {
     if (Object.keys(effects).includes(key)) {
       console.log(`effect ${effects[key]} triggered`);
 
-      // TODO: Finish loading effects
-      const effectName = effects[key];
-      const sound = new Howl({
-        src: [`assets/effects/${effectName}.mp3`],
-        volume: 0.5,
-        onend: function() {
-          console.log('Finished!');
-        }
-      });
+      this.setState({
+        currentEffects: [ ...this.state.currentEffects, key ]
+      })
 
-      sound.play();
+      new Howl({
+        src: [`./sounds/${effects[key]}.mp3`],
+        volume: 0.5,
+        autoplay: true,
+        onend: function() {
+          console.log('finish!');
+          this.setState({
+            currentEffects: currentEffects.filter(i => i !== key)
+          })
+        }
+      });   
 
       this.setState({
         currentSingTime: this.state.currentSingTime + 1

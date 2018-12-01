@@ -7,22 +7,25 @@ import SingSystem from './Components/SingSystem/SingSystem';
 function Game() {
   return (
     <Keyboard>
-      {key => (
-        <SingSystem keyCode={key}>
-          {(currentSingTime, handleSingTimeReset) => {
-            return (
-              <div>
-                <div>key: {key}</div>
-                <div>singTime: {currentSingTime}</div>
-                <div onClick={handleSingTimeReset}>Reset time</div>
-              </div>
-            );
-          }}
-        </SingSystem>
+      {pressedKeys => (
+        <div>pressedKeys: {JSON.stringify(pressedKeys)}</div>
       )}
     </Keyboard>
   );
 }
+
+        // <SingSystem pressedKeys={pressedKeys}>
+        //   {(currentSingTime, handleSingTimeReset) => {
+        //     return (
+        //       <div>
+        //         <div>pressedKeys: {pressedKeys}</div>
+        //         <div>singTime: {currentSingTime}</div>
+        //         <div onClick={handleSingTimeReset}>Reset time</div>
+        //       </div>
+        //     );
+        //   }}
+        // </SingSystem>
+
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(<Game />, rootElement);
