@@ -26,6 +26,8 @@ export default class Keyboard extends React.Component {
   }
 
   handleKeyDown = event => {
+    event.preventDefault();
+
     if (this.state.pressedKeys.includes(event.key) || this.isAllowed(event.key) === false) {
       return;
     }

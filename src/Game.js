@@ -4,19 +4,31 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 import Keyboard from './Components/Keyboard';
 import SingSystem from './Components/SingSystem';
-import BirdSpawner from './Components/SpawnSystem';
+import SpawnSystem from './Components/SpawnSystem';
 
 import Config from 'constants/Config';
-import { Foreground, Button } from './Components/Elements';
+import { Button } from './Components/Elements';
 
 const GlobalStyle = createGlobalStyle`
   html,
   body {
     height: 100%;
+    width: 100%;
     margin: 0px;
     padding: 0px;
-    background-color: #D46C32;
+    transform: scale(0.8);
+    background-color: black;
   }
+`;
+
+const Foreground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+  background-image: url(${Config.images.foreground});
+  background-color: #D46C32;
 `;
 
 const LogicContainer = styled.div`
@@ -26,7 +38,6 @@ const LogicContainer = styled.div`
   width: 100%;
   align-items: center;
 `;
-
 
 function Game() {
   const allowedSoundKeys = Config.sounds.map(sound => sound.key);
@@ -42,20 +53,15 @@ function Game() {
             {(currentSingTime, handleSingTimeReset) => {
               return (
                 <div>
-                  <BirdSpawner
+                  <SpawnSystem
+                    pressedKeys={pressedKeys}
                     singTime={currentSingTime}
                     singTimeReset={handleSingTimeReset}
                   >
                     {sacrifice => {
-                      return (
-                        <LogicContainer>
-                          <div>pressedKeys: {JSON.stringify(pressedKeys)}</div>
-                          <div>singTime: {currentSingTime}</div>
-                          <Button onClick={handleSingTimeReset}>RESET</Button>
-                        </LogicContainer>
-                      )
+                      return <div>Hello</div>
                     }}
-                  </BirdSpawner>
+                  </SpawnSystem>
                 </div>
               );
             }}

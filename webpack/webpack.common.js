@@ -19,6 +19,7 @@ module.exports = {
   resolve: {
     extensions: ['.js'],
     alias: {
+      assets: path.resolve(__dirname, '../assets'),
       constants: path.resolve(__dirname, '../src/constants'),
       utils: path.resolve(__dirname, '../src/utils'),      
       components: path.resolve(__dirname, '../src/components')
