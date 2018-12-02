@@ -1,4 +1,7 @@
 export default {
+  images: {
+    foreground: './images/foreground.png'
+  },
   sounds: [
     { key: 'a', path: './sounds/metal-gong.mp3'},
     { key: 's', path: './sounds/chinese-gong.mp3'},

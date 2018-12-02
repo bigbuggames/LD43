@@ -7,25 +7,30 @@ import GameConfig from 'constants/Config';
 
 class SingSystem extends React.Component {
   state = {
-    counterStage: Counter.INIT
+    counterStage: Counter.STOP
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.pressedKeys.toString() !== this.props.pressedKeys.toString()) {
+
+      // Pressed some key
       if (this.props.pressedKeys.length > 0) {
-        this.setState({ counterStage: Counter.RUNNING });
+        this.setState({ counterStage: Counter.RUN });
       }
 
+      // No keys pressed
       if (this.props.pressedKeys.length === 0) {
-        this.setState({ counterStage: Counter.INIT });
+        this.setState({ counterStage: Counter.STOP });
       }
     }
   }
 
-  // TODO: This reset handler is not working :/
   handleReset = () => {
-    console.log('reset clicked')
-    this.setState({ counterStage: Counter.CLEAR });
+    this.setState({ counterStage: Counter.STOP }, () => {
+      if (this.props.pressedKeys.length > 0) {
+        this.setState({ counterStage: Counter.RUN })
+      }
+    });
   }
 
   render() {
