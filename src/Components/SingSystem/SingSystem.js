@@ -1,112 +1,43 @@
 import React from 'react';
-import { Howl, Howler } from 'howler';
+import _ from 'lodash';
+import ReactHowler from 'react-howler' 
+
+import Counter from '../Counter/Counter';
+import GameConfig from 'constants/Config';
 
 class SingSystem extends React.Component {
-  state = {
-    currentSingTime: 0,
-    currentEffects: [],
-    lastKeys: []
-  };
 
   componentDidUpdate(prevProps) {
-
-    console.log('hi')
-   
-
-    // this.setState({
-    //   prevSantizedKeys: filteredKeys
-    // })
-
-    // console.log('sanitizedKeys:', sanitizedKeys);
-
-    // console.log(prevProps.pressedKeys, this.props.pressedKeys);
-
-
-    // prevProps.pressedKeys.forEach(key => {
-    //   const effects = GameConfig.effects;
-
-    //   // check if the sound is running and in case it is kill it
-    //   if (this.props.pressedKeys.includes(key)) {
-    //     console.log(`effect ${effects[key]} triggered`);
-
-    //   // start a new sound for that key
-    //   } else {
-    //     console.log(`effect ${effects[key]} stopped`);
-    //   }
-
-    // });
-
-    // this.props.pressedKeys.forEach(key => {
-    //   const effects = GameConfig.effects;
-
-    //   // check if the sound is running and in case it is kill it
-    //   if (this.prevProps.pressedKeys.includes(key)) {
-    //     console.log(`effect ${effects[key]} stopped`);
-
-    //   // start a new sound for that key
-    //   } else {
-    //     console.log(`effect ${effects[key]} triggered`);
-    //   }
-    // });
-
-
-
-    // this.triggerBirdSinging(this.props.keyCode, GameConfig.effects);
-  }
-
-  triggerBirdSinging = (key, effects) => {
-    if (Object.keys(effects).includes(key)) {
-      console.log(`effect ${effects[key]} triggered`);
-
-      // Trigger new sounds
-      // this.props.pressedKeys.forEach(key => {
-      //   if (this.prevProps.pressedKeys.includes(key)) {
-      //     // check if the sound is running and in case it is kill it
-  
-      //   // start a new sound for that key
-      //   } else {
-        
-  
-      //     const sound = new Howl({
-      //       src: [`./sounds/${effects[key]}.mp3`],
-      //       volume: 0.5,
-      //       autoplay: true,
-      //       onend: function() {
-      //         console.log('finish!');
-      //         // this.setState({
-      //         //   currentEffects: currentEffects.filter(i => i !== key)
-      //         // })
-      //       }
-      //     });  
-  
-      //     this.setState({
-      //       ongoingSounds: [ ...this.state.ongoingSounds, sound ]
-      //     })
-      //   }
-      // });
-
-     
-
-      this.setState({
-        currentSingTime: this.state.currentSingTime + 1
-      });
+    if (prevProps.pressedKeys.toString() !== this.props.pressedKeys.toString()) {
+      if (this.props.pressedKeys.length > 0) {
+        this.setState({ counterStage: Counter.RUNNING });
+      } else {
+        this.setState({ counterStage: Counter.CLEAR });
+      }
     }
-  };
-
-  handleSingTimeReset = () => {
-    this.setState({
-      currentSingTime: 0
-    });
-  };
+  }
 
   render() {
     return (
-      <div>
-        {this.props.children(
-          this.state.currentSingTime,
-          this.handleSingTimeReset
+      <Counter interval={500} stage={this.state.counterStage}>
+        {count => (
+          <>
+            {GameConfig.sounds.map(sound => {
+              return (
+                <ReactHowler
+                  key={sound.key}
+                  ref={(ref) => ( this[`soundSource_${sound.key}`] = ref)}
+                  src={sound.path}
+                  playing={this.props.pressedKeys.includes(sound.key)}
+                  onPause={() => this[`soundSource_${sound.key}`].stop()}
+                />
+              )
+            })}
+
+            {this.props.children(count)}
+          </>
         )}
-      </div>
+      </Counter>
     );
   }
 }

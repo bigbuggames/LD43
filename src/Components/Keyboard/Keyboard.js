@@ -22,7 +22,7 @@ export default class Keyboard extends React.Component {
   }
 
   isAllowed = (key) => {
-    return  Object.keys(this.props.allowedKeys).includes(key)
+    return this.props.allowedKeys.includes(key)
   }
 
   handleKeyDown = event => {

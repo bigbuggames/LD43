@@ -6,6 +6,7 @@
   "main": "src/Game.js",
   "dependencies": {
     "howler": "2.0.15",
+    "lodash": "^4.17.11",
     "react": "16.7.0-alpha.2 - next",
     "react-dom": "16.7.0-alpha.2 - next",
     "react-howler": "^3.7.3",

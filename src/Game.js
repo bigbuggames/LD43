@@ -6,10 +6,12 @@ import SingSystem from './Components/SingSystem/SingSystem';
 
 import GameConfig from 'constants/Config';
 
-
 function Game() {
+  const allowedSoundKeys = GameConfig.sounds.map(sound => sound.key);
+  console.log(allowedSoundKeys)
+
   return (
-    <Keyboard allowedKeys={GameConfig.effects}>
+    <Keyboard allowedKeys={allowedSoundKeys}>
       {pressedKeys => (
         <SingSystem pressedKeys={pressedKeys}>
           {(currentSingTime, handleSingTimeReset) => {
