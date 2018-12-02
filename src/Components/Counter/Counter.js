@@ -1,9 +1,9 @@
 import React from 'react';
 
 export default class Counter extends React.Component {
-  static CLEAR = 0;
+  static INIT = 0;
   static RUNNING = 1;
-  static PAUSED = 2;
+  static CLEAR = 2;
 
   static defaultProps = {
     interval: 1000,
@@ -26,18 +26,19 @@ export default class Counter extends React.Component {
       }, this.props.interval);
     }
 
-    if (this.props.stage === Counter.PAUSED) {
-      clearTimeout(this.counterId);
+    if (this.props.stage === Counter.CLEAR) {
+      this.setState({ count: 0 });
     }
 
-    if (this.props.stage === Counter.CLEAR) {
+    if (this.props.stage === Counter.INIT) {
       clearTimeout(this.counterId);
-      this.setState({ count: 0 });
+      this.setState({ count: 0, stage: Counter.RUNNING });
     }
   };
 
   componentDidUpdate(prevProps) {
     if (prevProps.stage !== this.props.stage) {
+      console.log(this.props.stage, this.state.count)
       this.tick();
     }
   }
