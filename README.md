@@ -1,3 +1,12 @@
+
+### Utils
+
+```javascript
+window.addEventListener('mousemove', (event) => {
+  console.log(event.pageX, event.pageY)
+})
+```
+
 ## Singing System
 
 - Triggers different sounds depending on input

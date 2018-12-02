@@ -2,7 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 import ReactHowler from 'react-howler' 
 
-import Counter from '../Counter/Counter';
+import Counter from '../Counter';
+import Bird from '../Bird';
+
 import GameConfig from 'constants/Config';
 
 class SingSystem extends React.Component {
@@ -15,12 +17,16 @@ class SingSystem extends React.Component {
 
       // Pressed some key
       if (this.props.pressedKeys.length > 0) {
-        this.setState({ counterStage: Counter.RUN });
+        this.setState({ 
+          counterStage: Counter.RUN
+        });
       }
 
       // No keys pressed
       if (this.props.pressedKeys.length === 0) {
-        this.setState({ counterStage: Counter.STOP });
+        this.setState({ 
+          counterStage: Counter.STOP
+        });
       }
     }
   }
@@ -47,6 +53,8 @@ class SingSystem extends React.Component {
                 onPause={() => this[`soundSource_${sound.key}`].stop()}
               />
             ))}
+
+            <Bird pressedKeys={this.props.pressedKeys} />
 
             {this.props.children(count, this.handleReset)}
           </>

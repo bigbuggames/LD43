@@ -1,6 +1,6 @@
 var spritesheet = require('spritesheet-js');
 
-spritesheet('./src/game/assets/*.png', {format: 'json'}, function (err) {
+spritesheet('./assets/images/temp/*.png', {format: 'json'}, function (err) {
   if (err) throw err;
 
   console.log('spritesheet successfully generated');
