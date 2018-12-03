@@ -16,6 +16,10 @@ export default class Counter extends React.Component {
 
   tick = () => {
     if (this.props.stage === Counter.RUN) {
+      if (this.props.onTick) {
+        this.props.onTick();
+      }
+      
       this.counterId = setTimeout(() => {
         this.setState(
           {

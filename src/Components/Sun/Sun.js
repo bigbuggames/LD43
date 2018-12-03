@@ -1,83 +1,94 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styled, { keyframes } from 'styled-components';
 
-import mandala from '../../../assets/images/mandala.png';
+import Counter from '../Counter/Counter';
 
-const ButtonContainer = styled.div`
-  display: flex;
-`;
+import {
+  Anchor,
+  Mandala,
+  Explosion,
+  Implosion
+} from './Elements';
 
-const Button = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 30px;
-  border-radius: 5px;
-  border: 1px solid tomato;
-  background-color: papayawhip;
-  margin: 10px 10px;
-`;
-
-const Anchor = styled.div`
-  position: relative;
-  top: 865px;
-  left: 50%;
-  z-index: -1;
-`;
-
-const Mandala = styled.div`
-  transform: translate(-50%, -50%);
-
-  height: ${props => props.boundary}px;
-  width: ${props => props.boundary}px;
-  border-radius: 50%;
-  background-image: url(${mandala});
-  background-position: center;
-  background-color: #fad48b;
-  box-shadow: 0 0 0 10px #fad48b;
-`;
-
-const sunPosition = { x: 900, y: 700 };
+const sunPosition = { x: 50, y: 700 };
+const explosionTime = 2400;
+const implosionTime = 1300;
 
 export default class Sun extends React.Component {
   state = {
     level: 0,
+    exploding: false,
+    imploding: false,
     levelBondaries: [330, 494, 563, 605, 699, 901, 983, 1076]
   };
 
   handlePrev = () => {
     if (this.state.level > 0) {
-      this.setState({ level: this.state.level - 1 });
+      this.setState({ 
+        exploding: true,
+        level: this.state.level - 1 
+      }, () => {
+        setTimeout(() => {
+          this.setState({
+            exploding: false
+          })
+        }, explosionTime);
+      });
     }
   };
 
   handleNext = () => {
     if (this.state.level < this.state.levelBondaries.length - 1) {
-      this.setState({ level: this.state.level + 1 });
+      this.setState({ 
+        imploding: true
+      }, () => {
+        setTimeout(() => {
+          this.setState({
+            level: this.state.level + 1,
+            imploding: false
+          })
+        }, implosionTime);
+      });
     }
   };
+
+  grow = (interval) => {
+    setTimeout(() => {
+      this.handleNext();
+      this.grow(interval);
+    }, interval);
+  }
+
+  componentDidMount() {
+    this.grow(10000);
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.pressedKeys.toString() !== this.props.pressedKeys.toString()) {
       if (this.props.pressedKeys.includes(' ')) {
-        this.handleNext();
+        setTimeout(() => {
+          this.handlePrev();
+        }, 1300);
       }
     }
   }
 
   render() {
-
     const boundary = this.state.levelBondaries[this.state.level];
+    const currentCenter = boundary / 2;
+
     return (
       <div>
-        <Anchor position={sunPosition}>
+        <Counter interval={2000} onTick={() => console.log('grow!!!!')}>{() => {}}</Counter>
+
+        <Anchor>
           <Mandala 
             position={sunPosition}
             boundary={boundary} 
-          />
+          >
+            {this.state.exploding && <Explosion boundary={boundary} />}
+            {this.state.imploding && <Implosion boundary={boundary} />}
+          </Mandala>
         </Anchor>
       </div>
     );

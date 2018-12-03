@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, keyframes } from 'styled-components';
 
 import Keyboard from './Components/Keyboard';
 import Bird from './Components/Bird';
@@ -51,6 +51,15 @@ const LogicContainer = styled.div`
   width: 100%;
   align-items: center;
 `;
+
+function Sandbox() {
+  return (
+    <div>
+      <GlobalStyle />
+      <Sun />
+    </div>
+  )
+}
 
 function Game() {
   const allowedSoundKeys = Config.sounds.map(sound => sound.key);
