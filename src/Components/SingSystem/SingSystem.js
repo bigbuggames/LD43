@@ -5,7 +5,19 @@ import ReactHowler from 'react-howler'
 import Counter from '../Counter';
 import Bird from '../Bird';
 
-import GameConfig from 'constants/Config';
+import a from '../../../assets/sounds/metal-gong.mp3';
+import s from '../../../assets/sounds/chinese-gong.mp3'
+import d from '../../../assets/sounds/tibetan-bells.mp3'
+import f from '../../../assets/sounds/zen-temple-bells.mp3'
+import space from '../../../assets/sounds/zen-temple-bells.mp3'
+
+const sounds = [
+  { key: 'a', blob: a },
+  { key: 's', blob: s },
+  { key: 'd', blob: d },
+  { key: 'f', blob: f },
+  { key: ' ', blob: space },
+]
 
 class SingSystem extends React.Component {
   state = {
@@ -44,11 +56,11 @@ class SingSystem extends React.Component {
       <Counter interval={500} stage={this.state.counterStage}>
         {count => (
           <>
-            {GameConfig.sounds.map(sound => (
+            {sounds.map(sound => (
               <ReactHowler
                 key={sound.key}
                 ref={(ref) => ( this[`soundSource_${sound.key}`] = ref)}
-                src={sound.path}
+                src={sound.blob}
                 playing={this.props.pressedKeys.includes(sound.key)}
                 onPause={() => this[`soundSource_${sound.key}`].stop()}
               />

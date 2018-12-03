@@ -9,6 +9,8 @@ import SpawnSystem from './Components/SpawnSystem';
 import Config from 'constants/Config';
 import { Button } from './Components/Elements';
 
+import foregroundImage from '../assets/images/foreground.png';
+
 const GlobalStyle = createGlobalStyle`
   html,
   body {
@@ -27,7 +29,7 @@ const Foreground = styled.div`
   left: 0;
   width: 1920px;
   height: 1080px;
-  background-image: url(${Config.images.foreground});
+  background-image: url(${foregroundImage});
   background-color: #D46C32;
 `;
 

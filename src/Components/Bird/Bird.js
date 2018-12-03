@@ -1,51 +1,65 @@
 import React from 'react';
 
-import { StyledBird } from './Elements';
-import Config from 'constants/Config';
-import { getRandomInt } from 'utils/random';
+import { AnimationContainer, Idle, Sing, Sacrifice, animations } from './Elements';
+
+// FIXME: Need use this kind of imports instead.
+// TODO: Remove paths from states
+// TODO: Add idle animation to bird
+// TODO: Trigger correct images on each step
 
 class Bird extends React.PureComponent {
-  static IDLE = './images/bird-sing-03.png';
-  static SING = [
-    './images/bird-sing-01.png',
-    './images/bird-sing-02.png'
-  ];
+  static IDLE = 0;
+  static SING = 1;
+  static SACRIFICE = 2;
 
   state = {
-    birdAnimation: Bird.IDLE
-  }
-    
-  getRandomBirdSprite = () => {
-    return Bird.SING[getRandomInt(0, Bird.SING.length - 1)];
+    birdState: Bird.IDLE
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.pressedKeys.toString() !== this.props.pressedKeys.toString()) {
 
+      // Sacrifice state
+      if (this.props.pressedKeys.includes(' ') === true) {
+        this.setState({ 
+          birdState: Bird.SACRIFICE
+        });
+        return;
+      }
+
       // Sing state
       if (this.props.pressedKeys.length > 0) {
-
-        // Check that not the same sprite is chosen
-        let spriteNumber = this.getRandomBirdSprite();
-        while(spriteNumber === this.state.birdAnimation) {
-          spriteNumber = this.getRandomBirdSprite();
-        }
-
         this.setState({ 
-          birdAnimation: spriteNumber
+          birdState: Bird.SING
         });
+        return;
+      }
 
       // Idle state
-      } else {
-        this.setState({ 
-          birdAnimation: Bird.IDLE
-        });
-      }
-    }
+      this.setState({ 
+        birdState: Bird.IDLE
+      });
+    }  
   }
 
   render() {
-    return <StyledBird {...this.props} url={this.state.birdAnimation} />
+    return (
+      <AnimationContainer state={this.state.birdState}>
+
+        {this.state.birdState === Bird.IDLE && 
+          <Idle duration={6.3} />
+        }
+
+        {this.state.birdState === Bird.SING &&
+          <Sing url={_.sample(animations['sing'])} />
+        }
+
+        {this.state.birdState === Bird.SACRIFICE &&
+          <Sacrifice />
+        }
+
+      </AnimationContainer>
+    )
   }
 }
 

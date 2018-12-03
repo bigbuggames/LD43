@@ -1,0 +1,575 @@
+.sacrifice {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sacrifice-BirdIdle-png0001 {
+    width: 238px;
+    height: 222px;
+    background-position: 0 0;
+}
+
+.sacrifice-BirdIdle-png0002 {
+    width: 238px;
+    height: 222px;
+    background-position: -238px 0;
+}
+
+.sacrifice-BirdIdle-png0003 {
+    width: 238px;
+    height: 222px;
+    background-position: -476px 0;
+}
+
+.sacrifice-BirdIdle-png0004 {
+    width: 238px;
+    height: 222px;
+    background-position: -714px 0;
+}
+
+.sacrifice-BirdIdle-png0005 {
+    width: 238px;
+    height: 222px;
+    background-position: -952px 0;
+}
+
+.sacrifice-BirdIdle-png0006 {
+    width: 238px;
+    height: 222px;
+    background-position: -1190px 0;
+}
+
+.sacrifice-BirdIdle-png0007 {
+    width: 238px;
+    height: 222px;
+    background-position: -1428px 0;
+}
+
+.sacrifice-BirdIdle-png0008 {
+    width: 238px;
+    height: 222px;
+    background-position: -1666px 0;
+}
+
+.sacrifice-BirdIdle-png0009 {
+    width: 238px;
+    height: 222px;
+    background-position: -1904px 0;
+}
+
+.sacrifice-BirdIdle-png0010 {
+    width: 238px;
+    height: 222px;
+    background-position: -2142px 0;
+}
+
+.sacrifice-BirdIdle-png0011 {
+    width: 238px;
+    height: 222px;
+    background-position: -2380px 0;
+}
+
+.sacrifice-BirdIdle-png0012 {
+    width: 238px;
+    height: 222px;
+    background-position: -2618px 0;
+}
+
+.sacrifice-BirdIdle-png0013 {
+    width: 238px;
+    height: 222px;
+    background-position: -2856px 0;
+}
+
+.sacrifice-BirdIdle-png0014 {
+    width: 238px;
+    height: 222px;
+    background-position: -3094px 0;
+}
+
+.sacrifice-BirdIdle-png0015 {
+    width: 238px;
+    height: 222px;
+    background-position: -3332px 0;
+}
+
+.sacrifice-BirdIdle-png0016 {
+    width: 238px;
+    height: 222px;
+    background-position: -3570px 0;
+}
+
+.sacrifice-BirdIdle-png0017 {
+    width: 238px;
+    height: 222px;
+    background-position: -3808px 0;
+}
+
+.sacrifice-BirdIdle-png0018 {
+    width: 238px;
+    height: 222px;
+    background-position: -4046px 0;
+}
+
+.sacrifice-BirdIdle-png0019 {
+    width: 238px;
+    height: 222px;
+    background-position: -4284px 0;
+}
+
+.sacrifice-BirdIdle-png0020 {
+    width: 238px;
+    height: 222px;
+    background-position: -4522px 0;
+}
+
+.sacrifice-BirdIdle-png0021 {
+    width: 238px;
+    height: 222px;
+    background-position: -4760px 0;
+}
+
+.sacrifice-BirdIdle-png0022 {
+    width: 238px;
+    height: 222px;
+    background-position: -4998px 0;
+}
+
+.sacrifice-BirdIdle-png0023 {
+    width: 238px;
+    height: 222px;
+    background-position: -5236px 0;
+}
+
+.sacrifice-BirdIdle-png0024 {
+    width: 238px;
+    height: 222px;
+    background-position: -5474px 0;
+}
+
+.sacrifice-BirdIdle-png0025 {
+    width: 238px;
+    height: 222px;
+    background-position: -5712px 0;
+}
+
+.sacrifice-BirdIdle-png0026 {
+    width: 238px;
+    height: 222px;
+    background-position: -5950px 0;
+}
+
+.sacrifice-BirdIdle-png0027 {
+    width: 238px;
+    height: 222px;
+    background-position: -6188px 0;
+}
+
+.sacrifice-BirdIdle-png0028 {
+    width: 238px;
+    height: 222px;
+    background-position: -6426px 0;
+}
+
+.sacrifice-BirdIdle-png0029 {
+    width: 238px;
+    height: 222px;
+    background-position: -6664px 0;
+}
+
+.sacrifice-BirdIdle-png0030 {
+    width: 238px;
+    height: 222px;
+    background-position: -6902px 0;
+}
+
+.sacrifice-BirdIdle-png0031 {
+    width: 238px;
+    height: 222px;
+    background-position: -7140px 0;
+}
+
+.sacrifice-BirdIdle-png0032 {
+    width: 238px;
+    height: 222px;
+    background-position: -7378px 0;
+}
+
+.sacrifice-BirdIdle-png0033 {
+    width: 238px;
+    height: 222px;
+    background-position: -7616px 0;
+}
+
+.sacrifice-BirdIdle-png0034 {
+    width: 238px;
+    height: 222px;
+    background-position: -7854px 0;
+}
+
+.sacrifice-BirdIdle-png0035 {
+    width: 238px;
+    height: 222px;
+    background-position: -8092px 0;
+}
+
+.sacrifice-BirdIdle-png0036 {
+    width: 238px;
+    height: 222px;
+    background-position: -8330px 0;
+}
+
+.sacrifice-BirdIdle-png0037 {
+    width: 238px;
+    height: 222px;
+    background-position: -8568px 0;
+}
+
+.sacrifice-BirdIdle-png0038 {
+    width: 238px;
+    height: 222px;
+    background-position: -8806px 0;
+}
+
+.sacrifice-BirdIdle-png0039 {
+    width: 238px;
+    height: 222px;
+    background-position: -9044px 0;
+}
+
+.sacrifice-BirdIdle-png0040 {
+    width: 238px;
+    height: 222px;
+    background-position: -9282px 0;
+}
+
+.sacrifice-BirdIdle-png0041 {
+    width: 238px;
+    height: 222px;
+    background-position: -9520px 0;
+}
+
+.sacrifice-BirdIdle-png0042 {
+    width: 238px;
+    height: 222px;
+    background-position: -9758px 0;
+}
+
+.sacrifice-BirdIdle-png0043 {
+    width: 238px;
+    height: 222px;
+    background-position: -9996px 0;
+}
+
+.sacrifice-BirdIdle-png0044 {
+    width: 238px;
+    height: 222px;
+    background-position: -10234px 0;
+}
+
+.sacrifice-BirdIdle-png0045 {
+    width: 238px;
+    height: 222px;
+    background-position: -10472px 0;
+}
+
+.sacrifice-BirdIdle-png0046 {
+    width: 238px;
+    height: 222px;
+    background-position: -10710px 0;
+}
+
+.sacrifice-BirdIdle-png0047 {
+    width: 238px;
+    height: 222px;
+    background-position: -10948px 0;
+}
+
+.sacrifice-BirdIdle-png0048 {
+    width: 238px;
+    height: 222px;
+    background-position: -11186px 0;
+}
+
+.sacrifice-BirdIdle-png0049 {
+    width: 238px;
+    height: 222px;
+    background-position: -11424px 0;
+}
+
+.sacrifice-BirdIdle-png0050 {
+    width: 238px;
+    height: 222px;
+    background-position: -11662px 0;
+}
+
+.sacrifice-BirdIdle-png0051 {
+    width: 238px;
+    height: 222px;
+    background-position: -11900px 0;
+}
+
+.sacrifice-BirdIdle-png0052 {
+    width: 238px;
+    height: 222px;
+    background-position: -12138px 0;
+}
+
+.sacrifice-BirdIdle-png0053 {
+    width: 238px;
+    height: 222px;
+    background-position: -12376px 0;
+}
+
+.sacrifice-BirdIdle-png0054 {
+    width: 238px;
+    height: 222px;
+    background-position: -12614px 0;
+}
+
+.sacrifice-BirdIdle-png0055 {
+    width: 238px;
+    height: 222px;
+    background-position: -12852px 0;
+}
+
+.sacrifice-BirdIdle-png0056 {
+    width: 238px;
+    height: 222px;
+    background-position: -13090px 0;
+}
+
+.sacrifice-BirdIdle-png0057 {
+    width: 238px;
+    height: 222px;
+    background-position: -13328px 0;
+}
+
+.sacrifice-BirdIdle-png0058 {
+    width: 238px;
+    height: 222px;
+    background-position: -13566px 0;
+}
+
+.sacrifice-BirdIdle-png0059 {
+    width: 238px;
+    height: 222px;
+    background-position: -13804px 0;
+}
+
+.sacrifice-BirdIdle-png0060 {
+    width: 238px;
+    height: 222px;
+    background-position: -14042px 0;
+}
+
+.sacrifice-BirdIdle-png0061 {
+    width: 238px;
+    height: 222px;
+    background-position: -14280px 0;
+}
+
+.sacrifice-BirdIdle-png0062 {
+    width: 238px;
+    height: 222px;
+    background-position: -14518px 0;
+}
+
+.sacrifice-BirdIdle-png0063 {
+    width: 238px;
+    height: 222px;
+    background-position: -14756px 0;
+}
+
+.sacrifice-BirdIdle-png0064 {
+    width: 238px;
+    height: 222px;
+    background-position: -14994px 0;
+}
+
+.sacrifice-BirdIdle-png0065 {
+    width: 238px;
+    height: 222px;
+    background-position: -15232px 0;
+}
+
+.sacrifice-BirdIdle-png0066 {
+    width: 238px;
+    height: 222px;
+    background-position: -15470px 0;
+}
+
+.sacrifice-BirdIdle-png0067 {
+    width: 238px;
+    height: 222px;
+    background-position: -15708px 0;
+}
+
+.sacrifice-BirdIdle-png0068 {
+    width: 238px;
+    height: 222px;
+    background-position: -15946px 0;
+}
+
+.sacrifice-BirdIdle-png0069 {
+    width: 238px;
+    height: 222px;
+    background-position: -16184px 0;
+}
+
+.sacrifice-BirdIdle-png0070 {
+    width: 238px;
+    height: 222px;
+    background-position: -16422px 0;
+}
+
+.sacrifice-BirdIdle-png0071 {
+    width: 238px;
+    height: 222px;
+    background-position: -16660px 0;
+}
+
+.sacrifice-BirdIdle-png0072 {
+    width: 238px;
+    height: 222px;
+    background-position: -16898px 0;
+}
+
+.sacrifice-BirdIdle-png0073 {
+    width: 238px;
+    height: 222px;
+    background-position: -17136px 0;
+}
+
+.sacrifice-BirdIdle-png0074 {
+    width: 238px;
+    height: 222px;
+    background-position: -17374px 0;
+}
+
+.sacrifice-BirdIdle-png0075 {
+    width: 238px;
+    height: 222px;
+    background-position: -17612px 0;
+}
+
+.sacrifice-BirdIdle-png0076 {
+    width: 238px;
+    height: 222px;
+    background-position: -17850px 0;
+}
+
+.sacrifice-BirdIdle-png0077 {
+    width: 238px;
+    height: 222px;
+    background-position: -18088px 0;
+}
+
+.sacrifice-BirdIdle-png0078 {
+    width: 238px;
+    height: 222px;
+    background-position: -18326px 0;
+}
+
+.sacrifice-BirdIdle-png0079 {
+    width: 238px;
+    height: 222px;
+    background-position: -18564px 0;
+}
+
+.sacrifice-BirdIdle-png0080 {
+    width: 238px;
+    height: 222px;
+    background-position: -18802px 0;
+}
+
+.sacrifice-BirdIdle-png0081 {
+    width: 238px;
+    height: 222px;
+    background-position: -19040px 0;
+}
+
+.sacrifice-BirdIdle-png0082 {
+    width: 238px;
+    height: 222px;
+    background-position: -19278px 0;
+}
+
+.sacrifice-BirdIdle-png0083 {
+    width: 238px;
+    height: 222px;
+    background-position: -19516px 0;
+}
+
+.sacrifice-BirdIdle-png0084 {
+    width: 238px;
+    height: 222px;
+    background-position: -19754px 0;
+}
+
+.sacrifice-BirdIdle-png0085 {
+    width: 238px;
+    height: 222px;
+    background-position: -19992px 0;
+}
+
+.sacrifice-BirdIdle-png0086 {
+    width: 238px;
+    height: 222px;
+    background-position: -20230px 0;
+}
+
+.sacrifice-BirdIdle-png0087 {
+    width: 238px;
+    height: 222px;
+    background-position: -20468px 0;
+}
+
+.sacrifice-BirdIdle-png0088 {
+    width: 238px;
+    height: 222px;
+    background-position: -20706px 0;
+}
+
+.sacrifice-BirdIdle-png0089 {
+    width: 238px;
+    height: 222px;
+    background-position: -20944px 0;
+}
+
+.sacrifice-github {
+    width: 30px;
+    height: 30px;
+    background-position: -21182px 0;
+}
+
+.sacrifice-gmail {
+    width: 30px;
+    height: 30px;
+    background-position: -21212px 0;
+}
+
+.sacrifice-linkedin {
+    width: 30px;
+    height: 30px;
+    background-position: -21242px 0;
+}
+
+.sacrifice-stackoverflow {
+    width: 30px;
+    height: 30px;
+    background-position: -21272px 0;
+}
+
+.sacrifice-tumblr {
+    width: 30px;
+    height: 30px;
+    background-position: -21302px 0;
+}
+
+.sacrifice-twitter {
+    width: 30px;
+    height: 30px;
+    background-position: -21332px 0;
+}
