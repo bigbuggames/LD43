@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactHowler from 'react-howler' 
 
 import { 
   AnimationContainer, 
@@ -7,6 +8,20 @@ import {
   Sacrifice, 
   animations 
 } from './Elements';
+
+import a from '../../../assets/sounds/metal-gong.mp3';
+import s from '../../../assets/sounds/chinese-gong.mp3'
+import d from '../../../assets/sounds/tibetan-bells.mp3'
+import f from '../../../assets/sounds/zen-temple-bells.mp3'
+import space from '../../../assets/sounds/zen-temple-bells.mp3'
+
+const sounds = [
+  { key: 'a', blob: a },
+  { key: 's', blob: s },
+  { key: 'd', blob: d },
+  { key: 'f', blob: f },
+  { key: ' ', blob: space },
+]
 
 class Bird extends React.PureComponent {
   static IDLE = 0;
@@ -47,6 +62,16 @@ class Bird extends React.PureComponent {
     return (
       <AnimationContainer state={this.state.birdState}>
 
+        {sounds.map(sound => (
+          <ReactHowler
+            key={sound.key}
+            ref={(ref) => ( this[`soundSource_${sound.key}`] = ref)}
+            src={sound.blob}
+            playing={this.props.pressedKeys.includes(sound.key)}
+            onPause={() => this[`soundSource_${sound.key}`].stop()}
+          />
+        ))}
+
         {this.state.birdState === Bird.IDLE && 
           <Idle duration={6.3} />
         }
@@ -56,7 +81,9 @@ class Bird extends React.PureComponent {
         }
 
         {this.state.birdState === Bird.SACRIFICE &&
-          <Sacrifice />
+          <Sacrifice>
+
+          </Sacrifice>
         }
 
       </AnimationContainer>

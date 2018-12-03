@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import Keyboard from './Components/Keyboard';
-import SingSystem from './Components/SingSystem';
-import SpawnSystem from './Components/SpawnSystem';
+import Bird from './Components/Bird';
+import Spawner from './Components/Spawner';
 
 import Config from 'constants/Config';
 import { Button } from './Components/Elements';
@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
 const Screen = styled.div`
   width: 1920px;
   height: 1080px;
-  transform: scale(0.9);
+  transform: scale(0.7);
   overflow: hidden;
 `;
 
@@ -60,29 +60,10 @@ function Game() {
 
       <Keyboard allowedKeys={allowedSoundKeys}>
         {pressedKeys => (
-          <SingSystem pressedKeys={pressedKeys}>
-            {(currentSingTime, handleSingTimeReset) => {
-              return (
-                <div>
-                  <SpawnSystem
-                    pressedKeys={pressedKeys}
-                    singTime={currentSingTime}
-                    singTimeReset={handleSingTimeReset}
-                  >
-                    {sacrifice => {
-                      return (
-                        <LogicContainer>
-                          <div>pressedKeys: {JSON.stringify(pressedKeys)}</div>
-                          <div>singTime: {currentSingTime}</div>
-                          <Button onClick={handleSingTimeReset}>RESET</Button>
-                        </LogicContainer>
-                      )
-                    }}
-                  </SpawnSystem>
-                </div>
-              );
-            }}
-          </SingSystem>
+          <div>
+            <Bird pressedKeys={pressedKeys} />
+            <Spawner pressedKeys={pressedKeys} spawnRate={2} />
+          </div>
         )}
       </Keyboard>
     </Screen>
