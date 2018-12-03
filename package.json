@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Theme: Sacrifices must be made. Praying to the coffee God to let us pass this three days. ",
   "keywords": [],
-  "main": "src/Game.js",
+  "homepage": "https://bigbuggames.github.io/ld43",
   "dependencies": {
     "howler": "2.0.15",
     "lodash": "^4.17.11",
@@ -26,6 +26,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "clean-webpack-plugin": "^1.0.0",
     "directory-named-webpack-plugin": "^4.0.0",
+    "gh-pages": "^2.0.1",
     "rimraf": "^2.6.2",
     "spritesheet-js": "^1.2.6",
     "webpack": "^4.26.1",
@@ -35,7 +36,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "build:dev": "webpack --config ./webpack/webpack.config.js",
-    "lint": "eslint ./src/ --cache --ignore-pattern .gitignore"
+    "build:dev": "webpack --config ./webpack/webpack.dev.js",
+    "deploy": "gh-pages -d dist"
   }
 }
