@@ -1,0 +1,23 @@
+.sacrifice {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sacrifice-mandala80001 {
+    width: 1076px;
+    height: 1076px;
+    background-position: 0 0;
+}
+
+.sacrifice-mandala80002 {
+    width: 1076px;
+    height: 1076px;
+    background-position: -1076px 0;
+}
+
+.sacrifice-mandala80003 {
+    width: 1076px;
+    height: 1076px;
+    background-position: -2152px 0;
+}

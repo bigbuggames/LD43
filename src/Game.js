@@ -5,6 +5,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import Keyboard from './Components/Keyboard';
 import Bird from './Components/Bird';
 import Spawner from './Components/Spawner';
+import Sun from './Components/Sun';
 
 import Config from 'constants/Config';
 import { Button } from './Components/Elements';
@@ -22,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
     justify-content: center;
     align-items: center;
     background-color: black;
+    overflow: hidden;
   }
 `;
 
@@ -30,6 +32,7 @@ const Screen = styled.div`
   height: 1080px;
   transform: scale(0.7);
   overflow: hidden;
+  background-color: #D46C32;
 `;
 
 const Foreground = styled.div`
@@ -39,7 +42,6 @@ const Foreground = styled.div`
   width: 100%;
   height: 100%;
   background-image: url(${foregroundImage});
-  background-color: #D46C32;
 `;
 
 const LogicContainer = styled.div`
@@ -56,13 +58,14 @@ function Game() {
   return (
     <Screen>
       <GlobalStyle />
-      <Foreground />
 
       <Keyboard allowedKeys={allowedSoundKeys}>
         {pressedKeys => (
           <div>
+            <Foreground />
             <Bird pressedKeys={pressedKeys} />
             <Spawner pressedKeys={pressedKeys} spawnRate={2} />
+            <Sun pressedKeys={pressedKeys} />
           </div>
         )}
       </Keyboard>

@@ -6,6 +6,7 @@ const Overlay = styled.div`
   height: 100%;
   width: 100%;
   outline: none;
+  z-index: 10;
 `;
 
 export default class Keyboard extends React.Component {

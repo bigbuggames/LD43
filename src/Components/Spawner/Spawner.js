@@ -136,15 +136,6 @@ export default class Spawner extends React.Component {
 
           return (
             <div>
-              <div>Pressed keys: {JSON.stringify(this.props.pressedKeys)}</div>
-              <div>Counter: {count}</div>
-
-              <ButtonContainer>
-                <Button onClick={this.handleStart}>START</Button>
-                <Button onClick={this.handleClear}>CLEAR</Button>
-                <Button onClick={this.handleSpawn}>SPAWN</Button>
-              </ButtonContainer>
-
               {this.state.spawnPoints.map((spawn, index) => {
                 if (spawn.render) {
                   return (
