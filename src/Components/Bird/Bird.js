@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { AnimationContainer, Idle, Sing, Sacrifice, animations } from './Elements';
-
-// FIXME: Need use this kind of imports instead.
-// TODO: Remove paths from states
-// TODO: Add idle animation to bird
-// TODO: Trigger correct images on each step
+import { 
+  AnimationContainer, 
+  Idle, 
+  Sing, 
+  Sacrifice, 
+  animations 
+} from './Elements';
 
 class Bird extends React.PureComponent {
   static IDLE = 0;

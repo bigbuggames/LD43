@@ -18,17 +18,26 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     margin: 0px;
     padding: 0px;
-    transform: scale(0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: black;
   }
+`;
+
+const Screen = styled.div`
+  width: 1920px;
+  height: 1080px;
+  transform: scale(0.9);
+  overflow: hidden;
 `;
 
 const Foreground = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 1920px;
-  height: 1080px;
+  width: 100%;
+  height: 100%;
   background-image: url(${foregroundImage});
   background-color: #D46C32;
 `;
@@ -45,7 +54,7 @@ function Game() {
   const allowedSoundKeys = Config.sounds.map(sound => sound.key);
 
   return (
-    <div>
+    <Screen>
       <GlobalStyle />
       <Foreground />
 
@@ -61,7 +70,13 @@ function Game() {
                     singTimeReset={handleSingTimeReset}
                   >
                     {sacrifice => {
-                      return <div>Hello</div>
+                      return (
+                        <LogicContainer>
+                          <div>pressedKeys: {JSON.stringify(pressedKeys)}</div>
+                          <div>singTime: {currentSingTime}</div>
+                          <Button onClick={handleSingTimeReset}>RESET</Button>
+                        </LogicContainer>
+                      )
                     }}
                   </SpawnSystem>
                 </div>
@@ -70,7 +85,7 @@ function Game() {
           </SingSystem>
         )}
       </Keyboard>
-    </div>
+    </Screen>
   );
 }
 
