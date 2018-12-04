@@ -68,7 +68,7 @@ function Game() {
     <Screen>
       <GlobalStyle />
 
-      <Keyboard allowedKeys={allowedSoundKeys}>
+      <Keyboard allowedKeys={['a', 's', 'd', ' ']}>
         {pressedKeys => (
           <div>
             <Foreground />

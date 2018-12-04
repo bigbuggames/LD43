@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactHowler from 'react-howler' 
 
 import Counter from '../Counter/Counter';
+
+import music from '../../../assets/sounds/volca-music.mp3';
 
 import {
   Anchor,
@@ -19,7 +22,7 @@ export default class Sun extends React.Component {
     level: 0,
     exploding: false,
     imploding: false,
-    levelBondaries: [330, 494, 563, 605, 699, 901, 983, 1076]
+    levelBondaries: [330, 494, 564, 606, 699, 902, 984, 1077, 1213]
   };
 
   handlePrev = () => {
@@ -60,7 +63,7 @@ export default class Sun extends React.Component {
   }
 
   componentDidMount() {
-    this.grow(10000);
+    this.grow(2000);
   }
 
   componentDidUpdate(prevProps) {
@@ -79,7 +82,12 @@ export default class Sun extends React.Component {
 
     return (
       <div>
-        <Counter interval={2000} onTick={() => console.log('grow!!!!')}>{() => {}}</Counter>
+        <ReactHowler
+          src={music}
+          playing={true}
+          volume={0.5}
+          loop={true}
+        />
 
         <Anchor>
           <Mandala 
@@ -87,7 +95,6 @@ export default class Sun extends React.Component {
             boundary={boundary} 
           >
             {this.state.exploding && <Explosion boundary={boundary} />}
-            {this.state.imploding && <Implosion boundary={boundary} />}
           </Mandala>
         </Anchor>
       </div>

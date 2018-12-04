@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactHowler from 'react-howler' 
+import { Howl } from 'howler'
 
 import { 
   AnimationContainer, 
@@ -9,18 +10,15 @@ import {
   animations 
 } from './Elements';
 
-import a from '../../../assets/sounds/metal-gong.mp3';
-import s from '../../../assets/sounds/chinese-gong.mp3'
-import d from '../../../assets/sounds/tibetan-bells.mp3'
-import f from '../../../assets/sounds/zen-temple-bells.mp3'
-import space from '../../../assets/sounds/zen-temple-bells.mp3'
+import songA from '../../../assets/sounds/volca-bird_01.mp3';
+import songS from '../../../assets/sounds/volca-bird_02.mp3'
+import songD from '../../../assets/sounds/volca-bird_03.mp3'
+import sacrificeSound from '../../../assets/sounds/volca-sacrifice.mp3'
 
 const sounds = [
-  { key: 'a', blob: a },
-  { key: 's', blob: s },
-  { key: 'd', blob: d },
-  { key: 'f', blob: f },
-  { key: ' ', blob: space },
+  { key: 'a', blob: songA },
+  { key: 's', blob: songS },
+  { key: 'd', blob: songD }
 ]
 
 class Bird extends React.PureComponent {
@@ -38,8 +36,11 @@ class Bird extends React.PureComponent {
       // Sacrifice state
       if (this.props.pressedKeys.includes(' ') === true) {
         this.setState({ 
-          birdState: Bird.SACRIFICE
+          birdState: Bird.SACRIFICE,
+        }, () => {
+          this.playSacrificeSound();
         });
+
         return;
       }
 
@@ -58,19 +59,27 @@ class Bird extends React.PureComponent {
     }  
   }
 
+  playSacrificeSound = () => {
+    const sound = new Howl({
+      src: [sacrificeSound]
+    });
+    
+    sound.play();
+  }
+
   render() {
     return (
       <AnimationContainer state={this.state.birdState}>
 
-        {sounds.map(sound => (
-          <ReactHowler
+        {sounds.map(sound => {          
+          return <ReactHowler
             key={sound.key}
             ref={(ref) => ( this[`soundSource_${sound.key}`] = ref)}
             src={sound.blob}
             playing={this.props.pressedKeys.includes(sound.key)}
             onPause={() => this[`soundSource_${sound.key}`].stop()}
           />
-        ))}
+        })}
 
         {this.state.birdState === Bird.IDLE && 
           <Idle duration={6.3} />
@@ -81,9 +90,7 @@ class Bird extends React.PureComponent {
         }
 
         {this.state.birdState === Bird.SACRIFICE &&
-          <Sacrifice>
-
-          </Sacrifice>
+          <Sacrifice />
         }
 
       </AnimationContainer>

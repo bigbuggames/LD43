@@ -7,13 +7,21 @@ import implosion from '../../../assets/images/implosion.png';
 export const Anchor = styled.div`
   position: absolute;
   top: 865px;
-  height: 1000px;
-  width: 500px;
   left: 50%;
   z-index: -1;
 `;
 
+const mandalaAnimation = keyframes`
+  from { 
+    background-position: 0 0; 
+  }
+  to { 
+    background-position: -2426px 0; 
+  }
+`;
+
 export const Mandala = styled.div`
+  /* transform: translate(-50%, -50%); */
   transform: translate(-50%, -50%);
 
   height: ${props => props.boundary}px;
@@ -23,6 +31,8 @@ export const Mandala = styled.div`
   background-position: center;
   background-color: #fad48b;
   box-shadow: 0 0 0 10px #fad48b;
+
+  animation: ${mandalaAnimation} 200ms steps(2) infinite;
 `;
 
 const explode = keyframes`
