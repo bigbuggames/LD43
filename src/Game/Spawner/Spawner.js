@@ -2,30 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Counter from 'Engine/Counter';
-import SpiritBird from '../SpiritBird/SpiritBird';
-
-const ButtonContainer = styled.div`
-  display: flex;
-`;
-
-const Button = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 30px;
-  border-radius: 5px;
-  border: 1px solid tomato;
-  background-color: papayawhip;
-  margin: 10px 10px;
-`;
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+import SpiritBird from '../SpiritBird';
+import { getRandomInt } from 'utils/random';
 
 export default class Spawner extends React.Component {
   static defaultProps = {

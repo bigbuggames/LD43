@@ -2,72 +2,78 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactHowler from 'react-howler' 
 
-import Counter from 'Engine/Counter';
+import { Mandala, Implosion, Explosion } from './Elements';
 
 import music from '../../../assets/sounds/volca-music.mp3';
 
-import {
-  Anchor,
-  Mandala,
-  Explosion,
-  Implosion
-} from './Elements';
-
-const sunPosition = { x: 50, y: 700 };
-const explosionTime = 2400;
-const implosionTime = 1300;
-
-export default class Sun extends React.Component {
+class Sun extends React.Component {
   state = {
     level: 0,
-    exploding: false,
-    imploding: false,
-    levelBondaries: [330, 494, 564, 606, 699, 902, 984, 1077, 1213]
+    implode: false,
+    explode: false,
+    levelBondaries: [330, 494, 563, 605, 699, 901, 983, 1076, 1213]
+  };
+
+  static defaultProps = {
+    nextLevelInterval: 10000,
+    pressedKeys: []
   };
 
   handlePrev = () => {
-    if (this.state.level > 0) {
-      this.setState({ 
-        exploding: true,
-        level: this.state.level - 1 
-      }, () => {
-        setTimeout(() => {
-          this.setState({
-            exploding: false
-          })
-        }, explosionTime);
-      });
+    if (this.state.level > 0 && this.state.explode === false) {
+      this.handleExplosion();
+      this.setState({ level: this.state.level - 1 });
     }
   };
 
   handleNext = () => {
-    if (this.state.level < this.state.levelBondaries.length - 1) {
-      this.setState({ 
-        imploding: true
-      }, () => {
-        setTimeout(() => {
-          this.setState({
-            level: this.state.level + 1,
-            imploding: false
-          })
-        }, implosionTime);
-      });
+    if (
+      this.state.level < this.state.levelBondaries.length - 1 &&
+      this.state.implode === false
+    ) {
+      this.handleImplosion();
     }
   };
 
-  grow = (interval) => {
+  handleImplosion = () => {
+    if (this.state.implode) {
+      return;
+    }
+
+    this.setState({ implode: true }, () => {
+      setTimeout(() => {
+        this.setState({ implode: false, level: this.state.level + 1 });
+      }, this.props.nextLevelInterval);
+    });
+  };
+
+  handleExplosion = () => {
+    if (this.state.explode) {
+      return;
+    }
+
+    this.setState({ explode: true }, () => {
+      setTimeout(() => {
+        this.setState({ explode: false });
+      }, 4000);
+    });
+  };
+
+  automaticLevelChange = interval => {
     setTimeout(() => {
       this.handleNext();
-      this.grow(interval);
+      this.automaticLevelChange(interval);
     }, interval);
-  }
+  };
 
   componentDidMount() {
-    this.grow(2000);
+    this.automaticLevelChange(this.props.nextLevelInterval);
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.pressedKeys.toString() !== this.props.pressedKeys.toString()) {
+    if (
+      prevProps.pressedKeys.toString() !== this.props.pressedKeys.toString()
+    ) {
       if (this.props.pressedKeys.includes(' ')) {
         setTimeout(() => {
           this.handlePrev();
@@ -78,10 +84,8 @@ export default class Sun extends React.Component {
 
   render() {
     const boundary = this.state.levelBondaries[this.state.level];
-    const currentCenter = boundary / 2;
-
     return (
-      <div>
+      <>
         <ReactHowler
           src={music}
           playing={true}
@@ -89,15 +93,21 @@ export default class Sun extends React.Component {
           loop={true}
         />
 
-        <Anchor>
-          <Mandala 
-            position={sunPosition}
-            boundary={boundary} 
-          >
-            {this.state.exploding && <Explosion boundary={boundary} />}
-          </Mandala>
-        </Anchor>
-      </div>
+        {this.state.implode && (
+          <Implosion
+            position={this.props.position}
+            duration={this.props.nextLevelInterval}
+          />
+        )}
+
+        <Mandala
+          position={this.props.position}
+          boundary={boundary}
+          level={this.state.level}
+        />
+      </>
     );
   }
 }
+
+export default Sun;

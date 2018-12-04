@@ -20,6 +20,6 @@ export default class AssetLoader extends React.Component {
   }
 
   render() {
-    return this.props.children(this.state.loaded, this.state.loadedAssets);
+    return this.props.children(this.state.loaded);
   }
 }

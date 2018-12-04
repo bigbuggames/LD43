@@ -19,7 +19,7 @@ class Game extends React.Component {
   render() {
     return (
       <AssetLoader assets={assetList}>
-        {(loaded, loadedAssets) => {
+        {(loaded) => {
           if (loaded === false) {
             return <div>Loading...</div>
           }
@@ -27,14 +27,14 @@ class Game extends React.Component {
           return (
             <Screen>
               <GlobalStyle />
-      
+
               <Keyboard allowedKeys={['q', 'w', 'e', ' ']}>
                 {pressedKeys => (
                   <>
                     <Foreground />
                     <Bird pressedKeys={pressedKeys} />
                     <Spawner pressedKeys={pressedKeys} spawnRate={2} />
-                    <Sun pressedKeys={pressedKeys} />
+                    <Sun pressedKeys={pressedKeys} position={{ x: 935, y: 868 }} />
                   </>
                 )}
               </Keyboard>

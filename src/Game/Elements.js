@@ -15,10 +15,10 @@ export const GlobalStyle = createGlobalStyle`
     background-color: black;
     overflow: hidden;
 
-    pointer-events: none;
+    /* pointer-events: none;
     cursor: default;
     text-decoration: none;
-    color: black;
+    color: black; */
   }
 `;
 
