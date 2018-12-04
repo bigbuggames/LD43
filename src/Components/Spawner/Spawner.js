@@ -115,7 +115,7 @@ export default class Spawner extends React.Component {
 
   render() {
     return (
-      <Counter interval={200} stage={this.state.counterState}>
+      <Counter interval={400} stage={this.state.counterState}>
         {count => {
           if (
             count % this.props.spawnRate === 0 &&

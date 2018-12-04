@@ -10,7 +10,7 @@ import Sun from './Components/Sun';
 import Config from 'constants/Config';
 import { Button } from './Components/Elements';
 
-import foregroundImage from '../assets/images/foreground.png';
+import foregroundImage from '../assets/images/Background.png';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -24,7 +24,14 @@ const GlobalStyle = createGlobalStyle`
     align-items: center;
     background-color: black;
     overflow: hidden;
+    pointer-events: none;
+    cursor: none;
   }
+`;
+
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
 `;
 
 const Screen = styled.div`
@@ -33,6 +40,7 @@ const Screen = styled.div`
   transform: scale(0.7);
   overflow: hidden;
   background-color: #D46C32;
+  animation: ${fadeIn} 4s ease-in;
 `;
 
 const Foreground = styled.div`
@@ -44,42 +52,26 @@ const Foreground = styled.div`
   background-image: url(${foregroundImage});
 `;
 
-const LogicContainer = styled.div`
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-`;
+class Game extends React.Component {
 
-function Sandbox() {
-  return (
-    <div>
-      <GlobalStyle />
-      <Sun />
-    </div>
-  )
-}
+  render() {
+    return (
+      <Screen>
+        <GlobalStyle />
 
-function Game() {
-  const allowedSoundKeys = Config.sounds.map(sound => sound.key);
-
-  return (
-    <Screen>
-      <GlobalStyle />
-
-      <Keyboard allowedKeys={['a', 's', 'd', ' ']}>
-        {pressedKeys => (
-          <div>
-            <Foreground />
-            <Bird pressedKeys={pressedKeys} />
-            <Spawner pressedKeys={pressedKeys} spawnRate={2} />
-            <Sun pressedKeys={pressedKeys} />
-          </div>
-        )}
-      </Keyboard>
-    </Screen>
-  );
+        <Keyboard allowedKeys={['q', 'w', 'e', ' ']}>
+          {pressedKeys => (
+            <div>
+              <Foreground />
+              <Bird pressedKeys={pressedKeys} />
+              <Spawner pressedKeys={pressedKeys} spawnRate={2} />
+              <Sun pressedKeys={pressedKeys} />
+            </div>
+          )}
+        </Keyboard>
+      </Screen>
+    )
+  }
 }
 
 

@@ -14,6 +14,14 @@ export default class Keyboard extends React.Component {
     pressedKeys: []
   };
 
+  keyboardRef = React.createRef()
+
+  componentDidMount() {
+    if (this.keyboardRef) {
+      this.keyboardRef.current.focus()
+    }
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.pressedKeys.toString() === nextState.pressedKeys.toString()) {
       return false;
@@ -50,6 +58,7 @@ export default class Keyboard extends React.Component {
         tabIndex="0"
         onKeyDown={this.handleKeyDown}
         onKeyUp={this.handleKeyUp}
+        ref={this.keyboardRef}
       >
         {this.props.children(this.state.pressedKeys)}
       </Overlay>

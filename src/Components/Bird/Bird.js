@@ -16,9 +16,9 @@ import songD from '../../../assets/sounds/volca-bird_03.mp3'
 import sacrificeSound from '../../../assets/sounds/volca-sacrifice.mp3'
 
 const sounds = [
-  { key: 'a', blob: songA },
-  { key: 's', blob: songS },
-  { key: 'd', blob: songD }
+  { key: 'q', blob: songA },
+  { key: 'w', blob: songS },
+  { key: 'e', blob: songD }
 ]
 
 class Bird extends React.PureComponent {
