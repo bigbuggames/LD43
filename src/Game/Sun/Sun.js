@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactHowler from 'react-howler' 
 
-import { Mandala, Implosion, Explosion } from './Elements';
+import { Mandala, Implosion } from './Elements';
+import Explosion from './Explosion';
 
 import music from '../../../assets/sounds/volca-music.mp3';
 
@@ -77,7 +78,7 @@ class Sun extends React.Component {
       if (this.props.pressedKeys.includes(' ')) {
         setTimeout(() => {
           this.handlePrev();
-        }, 1300);
+        }, 3000);
       }
     }
   }
@@ -105,6 +106,19 @@ class Sun extends React.Component {
           boundary={boundary}
           level={this.state.level}
         />
+
+        <Explosion
+          position={this.props.position}
+          duration={this.props.nextLevelInterval}
+        />
+
+        {/* {this.state.explode && (
+          <Explosion
+            position={this.props.position}
+            duration={this.props.nextLevelInterval}
+          />
+        )} */}
+    
       </>
     );
   }

@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import mandala01 from '../../../assets/images/mandala-01.png';
@@ -11,7 +12,6 @@ import mandala08 from '../../../assets/images/mandala-08.png';
 import mandala09 from '../../../assets/images/mandala-09.png';
 
 import implosionImg from '../../../assets/images/implosion.png';
-import explosionSheet from '../../../assets/images/explosion.png';
 
 const mandalaSprites = [
   mandala01,
@@ -72,27 +72,4 @@ export const Implosion = styled.div`
   width: 1167px;
 
   animation: ${implodeAnim} ${props => props.duration}ms linear forwards;
-`;
-
-const explodeAnimation = keyframes`
-  from { 
-    background-position: 0 0;
-    transform: translate3d(-50%, -50%, 0);
-  }
-  to { 
-    background-position: -29000px 0;
-    transform: translate3d(-50%, -50%, 0);
-  }
-`;
-
-export const Explosion = styled.div`
-  position: fixed;
-  top: ${props => props.position.y}px;
-  left: ${props => props.position.x}px;
-
-  background-image: url(${explosionSheet});
-  width: 3023px;
-  height: 1929px;
-
-  animation: ${explodeAnimation} 4s steps(29) infinite;
 `;
