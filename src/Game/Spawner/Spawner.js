@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Counter from '../Counter/Counter';
+import Counter from 'Engine/Counter';
 import SpiritBird from '../SpiritBird/SpiritBird';
 
 const ButtonContainer = styled.div`

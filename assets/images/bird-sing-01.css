@@ -1,0 +1,65 @@
+.sacrifice {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sacrifice-birdSing10001 {
+    width: 194px;
+    height: 254px;
+    background-position: 0 0;
+}
+
+.sacrifice-birdSing10002 {
+    width: 194px;
+    height: 254px;
+    background-position: -194px 0;
+}
+
+.sacrifice-birdSing10003 {
+    width: 194px;
+    height: 254px;
+    background-position: -388px 0;
+}
+
+.sacrifice-birdSing10004 {
+    width: 194px;
+    height: 254px;
+    background-position: -582px 0;
+}
+
+.sacrifice-birdSing10005 {
+    width: 194px;
+    height: 254px;
+    background-position: -776px 0;
+}
+
+.sacrifice-birdSing10006 {
+    width: 194px;
+    height: 254px;
+    background-position: -970px 0;
+}
+
+.sacrifice-birdSing10007 {
+    width: 194px;
+    height: 254px;
+    background-position: -1164px 0;
+}
+
+.sacrifice-birdSing10008 {
+    width: 194px;
+    height: 254px;
+    background-position: -1358px 0;
+}
+
+.sacrifice-birdSing10009 {
+    width: 194px;
+    height: 254px;
+    background-position: -1552px 0;
+}
+
+.sacrifice-birdSing10010 {
+    width: 194px;
+    height: 254px;
+    background-position: -1746px 0;
+}

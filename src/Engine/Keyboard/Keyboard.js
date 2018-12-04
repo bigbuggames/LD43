@@ -14,8 +14,8 @@ export default class Keyboard extends React.Component {
     pressedKeys: []
   };
 
+  // TODO: This shouldn't be here
   keyboardRef = React.createRef()
-
   componentDidMount() {
     if (this.keyboardRef) {
       this.keyboardRef.current.focus()

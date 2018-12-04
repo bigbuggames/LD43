@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactHowler from 'react-howler' 
 
-import Counter from '../Counter/Counter';
+import Counter from 'Engine/Counter';
 
 import music from '../../../assets/sounds/volca-music.mp3';
 

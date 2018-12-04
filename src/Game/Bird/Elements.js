@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import birdIdleSpritesheet from '../../../assets/images/bird-idle.png';
 import birdSacrifice from '../../../assets/images/bird-sacrifice.png';
-import birdSing01 from '../../../assets/images/bird-sing-01.png';
+import birdSing01 from '../../../assets/images/birdSing10001.png';
 import birdSing02 from '../../../assets/images/bird-sing-02.png';
 import birdSing03 from '../../../assets/images/bird-sing-03.png';
 
