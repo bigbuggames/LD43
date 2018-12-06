@@ -43,7 +43,7 @@ export default class SpiritBird extends React.Component {
       x: this.props.sunPosition.x - this.props.position.x,
       y: this.props.sunPosition.y - this.props.position.y
     };
-
+    
     const Sacrifice = getSacrifice(sacrificeEndPosition);
 
     return (
@@ -62,7 +62,10 @@ export default class SpiritBird extends React.Component {
         }
 
         {this.state.animationState === SpiritBird.SACRIFICE && 
-          <Sacrifice duration={1.2} mirror={this.props.mirror} />
+          <Sacrifice 
+            duration={1.2} 
+            mirror={this.props.mirror}
+          />
         }
 
       </AnimationContainer>

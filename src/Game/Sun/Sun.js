@@ -20,27 +20,20 @@ class Sun extends React.Component {
     pressedKeys: []
   };
 
-  handlePrev = () => {
-    if (this.state.level > 0 && this.state.explode === false) {
-      this.handleExplosion();
-      this.setState({ level: this.state.level - 1 });
-    }
-  };
+  automaticLevelChange = interval => {
+    setTimeout(() => {
+      if (
+        this.state.level < this.state.levelBondaries.length - 1 &&
+        this.state.implode === false
+      ) {
+        this.handleImplosion();
+      }
 
-  handleNext = () => {
-    if (
-      this.state.level < this.state.levelBondaries.length - 1 &&
-      this.state.implode === false
-    ) {
-      this.handleImplosion();
-    }
+      this.automaticLevelChange(interval);
+    }, interval);
   };
 
   handleImplosion = () => {
-    if (this.state.implode) {
-      return;
-    }
-
     this.setState({ implode: true }, () => {
       setTimeout(() => {
         this.setState({ implode: false, level: this.state.level + 1 });
@@ -49,23 +42,18 @@ class Sun extends React.Component {
   };
 
   handleExplosion = () => {
-    if (this.state.explode) {
-      return;
-    }
-
-    this.setState({ explode: true }, () => {
-      setTimeout(() => {
-        this.setState({ explode: false });
-      }, 4000);
-    });
-  };
-
-  automaticLevelChange = interval => {
     setTimeout(() => {
-      this.handleNext();
-      this.automaticLevelChange(interval);
-    }, interval);
-  };
+      if (this.state.level > 0 && this.state.explode === false) {
+
+        this.setState({ level: this.state.level - 1, explode: true }, () => {
+          setTimeout(() => {
+            this.setState({ explode: false });
+          }, 3000);
+        });
+
+      }
+    }, 1300);
+  }
 
   componentDidMount() {
     this.automaticLevelChange(this.props.nextLevelInterval);
@@ -76,9 +64,7 @@ class Sun extends React.Component {
       prevProps.pressedKeys.toString() !== this.props.pressedKeys.toString()
     ) {
       if (this.props.pressedKeys.includes(' ')) {
-        setTimeout(() => {
-          this.handlePrev();
-        }, 3000);
+        this.handleExplosion();
       }
     }
   }
@@ -107,17 +93,12 @@ class Sun extends React.Component {
           level={this.state.level}
         />
 
-        <Explosion
-          position={this.props.position}
-          duration={this.props.nextLevelInterval}
-        />
-
-        {/* {this.state.explode && (
+        {this.state.explode && (
           <Explosion
             position={this.props.position}
             duration={this.props.nextLevelInterval}
           />
-        )} */}
+        )}
     
       </>
     );

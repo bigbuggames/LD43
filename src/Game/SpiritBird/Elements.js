@@ -11,8 +11,6 @@ export const AnimationContainer = styled.div`
 
   transform-origin: top left;
   transform: rotateY(${props => props.mirror ? 180 : 0}deg);
-
-  /* border: 2px dashed lightgreen; */
 `;
 
 const animations = {

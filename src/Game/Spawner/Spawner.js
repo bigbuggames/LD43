@@ -8,7 +8,7 @@ import { getRandomInt } from 'utils/random';
 export default class Spawner extends React.Component {
   static defaultProps = {
     spawnRate: 4,
-    sunPosition: { x: 900, y: 700 }
+    sunPosition: { x: 935, y: 800 }
   };
 
   state = {
