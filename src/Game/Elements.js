@@ -1,26 +1,6 @@
-import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import foregroundImage from '../../assets/images/foreground.png';
-
-export const GlobalStyle = createGlobalStyle`
-  html,
-  body {
-    height: 100%;
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    overflow: hidden;
-
-    /* pointer-events: none;
-    cursor: default;
-    text-decoration: none;
-    color: black; */
-  }
-`;
 
 const fadeIn = keyframes`
   from { opacity: 0; }

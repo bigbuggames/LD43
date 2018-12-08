@@ -9,7 +9,6 @@ import Sun from 'Game/Sun';
 
 import {
   Screen,
-  GlobalStyle,
   Foreground
 } from './Elements';
 
@@ -18,7 +17,8 @@ import assetList from 'constants/Assets';
 class Game extends React.Component {
   render() {
     return (
-      <AssetLoader assets={assetList}>
+      <>
+        <AssetLoader assets={assetList}>
         {(loaded) => {
           if (loaded === false) {
             return <div>Loading...</div>
@@ -26,8 +26,6 @@ class Game extends React.Component {
 
           return (
             <Screen>
-              <GlobalStyle />
-
               <Keyboard allowedKeys={['q', 'w', 'e', ' ']}>
                 {pressedKeys => (
                   <>
@@ -42,6 +40,7 @@ class Game extends React.Component {
           )
         }}
       </AssetLoader>
+      </>
     )
   }
 }
