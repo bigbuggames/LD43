@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactHowler from 'react-howler' 
 import { Howl } from 'howler'
+import { withAssets } from 'Engine/AssetLoader'
 
 import { 
   AnimationContainer, 
   Idle, 
   Sing, 
-  Sacrifice, 
-  animations 
+  Sacrifice,
 } from './Elements';
 
 // TODO: Create prefetcher object
@@ -87,7 +87,7 @@ class Bird extends React.PureComponent {
         }
 
         {this.state.birdState === Bird.SING &&
-          <Sing url={_.sample(animations['sing'])} />
+          <Sing />
         }
 
         {this.state.birdState === Bird.SACRIFICE &&

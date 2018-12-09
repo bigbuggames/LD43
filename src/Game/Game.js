@@ -12,34 +12,34 @@ import {
   Foreground
 } from './Elements';
 
-import assetList from 'constants/Assets';
+import assets from 'constants/Assets';
 
 class Game extends React.Component {
   render() {
     return (
       <>
-        <AssetLoader assets={assetList}>
-        {(loaded) => {
-          if (loaded === false) {
-            return <div>Loading...</div>
-          }
+        <AssetLoader assets={assets}>
+          {(loaded) => {
+            if (loaded === false) {
+              return <div>Loading...</div>
+            }
 
-          return (
-            <Screen>
-              <Keyboard allowedKeys={['q', 'w', 'e', ' ']}>
-                {pressedKeys => (
-                  <>
-                    <Foreground />
-                    <Bird pressedKeys={pressedKeys} />
-                    <Spawner pressedKeys={pressedKeys} spawnRate={2} />
-                    <Sun pressedKeys={pressedKeys} position={{ x: 935, y: 868 }} />
-                  </>
-                )}
-              </Keyboard>
-            </Screen>
-          )
-        }}
-      </AssetLoader>
+            return (
+              <Screen>
+                <Keyboard allowedKeys={['q', 'w', 'e', ' ']}>
+                  {pressedKeys => (
+                    <>
+                      <Foreground />
+                      <Bird pressedKeys={pressedKeys} />
+                      <Spawner pressedKeys={pressedKeys} spawnRate={2} />
+                      <Sun pressedKeys={pressedKeys} position={{ x: 935, y: 868 }} />
+                    </>
+                  )}
+                </Keyboard>
+              </Screen>
+            )
+          }}
+        </AssetLoader>
       </>
     )
   }

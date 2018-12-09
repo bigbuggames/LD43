@@ -5,7 +5,9 @@ const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin');
 const rules = require('./webpack.rules');
 
 module.exports = {
-  entry: [ 
+  entry: [
+    "core-js/modules/es6.promise",
+    "core-js/modules/es6.array.iterator",
     './src/Game/Game.js'
   ],
   plugins: [
