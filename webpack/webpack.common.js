@@ -11,7 +11,7 @@ module.exports = {
     './src/Game/Game.js'
   ],
   plugins: [
-    new CleanWebpackPlugin(['dist'])
+    new CleanWebpackPlugin()
   ],
   output: {
     filename: '[name].bundle.js',
