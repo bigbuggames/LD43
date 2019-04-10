@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-
-import foregroundImage from '../../assets/images/foreground.png';
+import { withAssets } from 'Engine/AssetLoader';
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -16,14 +15,14 @@ export const Screen = styled.div`
   animation: ${fadeIn} 4s ease-in;
 `;
 
-export const Foreground = styled.div`
+export const Foreground = withAssets(styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(${foregroundImage});
-`;
+  background-image: url(${props => props.assets.images['foreground'].locator});
+`);
 
 export const Button = styled.div`
   box-sizing: border-box;

@@ -1,51 +1,62 @@
-
 import React from 'react';
+
+import imageLoader from './loaders/imageLoader';
 
 const AssetContext = React.createContext({});
 
-class AssetLoader extends React.Component {
+export default class AssetLoader extends React.Component {
   state = {
-    loaded: false,
-    loadedAssets: {}
-  }
+    loaded: false
+  };
 
-  /**
-   * Pre-loading all the assets using dynamic imports
-   * 
-   * Used `webpackMode: "eager"` to avoid having one network request for the 
-   * chunk and another for the actual asset.
-   * 
-   * TODO: Get rid of the absolute path dependency
-   */
-  preloadAssets = (assets) => {
-    const generatedImports = assets.map(asset => import(
-      /* webpackPreload: true */
-      /* webpackMode: "eager" */
-      `../../../assets/${asset}`
-    ));
+  createAssetsObjectByKey = loadedAssets => {
+    return loadedAssets.reduce((acc, item) => {
+      return {
+        ...acc,
+        [item.id]: item
+      };
+    }, {});
+  };
 
-    Promise.all(generatedImports).then(modules => {
-      console.log('assets loaded...')
+  getBundlesAsKeys = bundles => {
+    return bundles.reduce((acc, bundle) => {
+      return {
+        ...acc,
+        [bundle.type]: bundle.loadedAssets
+      };
+    }, {});
+  };
 
-      const assetsMappedToModules = modules.reduce((acc, currentModule, index) => {
-        return {
-          ...acc,
-          [assets[index]]: currentModule.default
-        }
-      }, {});
-
-      this.setState({ 
-        loaded: true,
-        loadedAssets: assetsMappedToModules
-      })
+  loadAssetType = (type, driver) => {
+    return new Promise((resolve, reject) => {
+      Promise.all([
+        ...driver(this.props.assets.find(bundle => bundle.type === type))
+      ])
+        .then(loadedAssets => {
+          resolve({
+            type,
+            loadedAssets: this.createAssetsObjectByKey(loadedAssets)
+          });
+        })
+        .catch((error) => {
+          reject(new Error(`Problem loading assets of type ${type}...`));
+        });
     });
-
-  }
+  };
 
   componentDidMount() {
-    if (this.props.assets) {
-      this.preloadAssets(this.props.assets);
-    }
+    Promise.all([this.loadAssetType('images', imageLoader)]).then(
+      loadedBundles => {
+        /* Here we receive an array of bundles with the type and the loaded asset information */
+        this.setState({
+          loaded: true,
+          /* Create a key for each bundle type */
+          loadedAssets: this.getBundlesAsKeys(loadedBundles)
+        });
+      }
+    ).catch((error) => {
+      console.error(error);
+    })
   }
 
   render() {
@@ -53,7 +64,7 @@ class AssetLoader extends React.Component {
       <AssetContext.Provider value={this.state.loadedAssets}>
         {this.props.children(this.state.loaded)}
       </AssetContext.Provider>
-    )
+    );
   }
 }
 
@@ -66,5 +77,3 @@ export function withAssets(Component) {
     );
   };
 }
-
-export default AssetLoader;

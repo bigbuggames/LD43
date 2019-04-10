@@ -1,8 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-
-import spawnSpritesheet from '../../../assets/images/respawn.png';
-import idleSpritesheet from '../../../assets/images/spirit-bird-idle.png';
-import sacrificeSpritesheet from '../../../assets/images/sacrifice.png';
+import { withAssets } from 'Engine/AssetLoader'
 
 export const AnimationContainer = styled.div`
   position: absolute;
@@ -28,24 +25,24 @@ const animations = {
   `,
 };
 
-export const Spawn = styled.div`
+export const Spawn = withAssets(styled.div`
   width: 656px;
   height: 668px;
-  background: url(${spawnSpritesheet}) left center;
+  background: url(${props => props.assets.images['respawn'].locator}) left center;
   animation: ${animations['spawn']} ${props => props.duration}s steps(48) infinite;
-`
+`)
 
-export const Idle = styled.div`
+export const Idle = withAssets(styled.div`
   width: 238px;
   height: 222px;
-  background: url(${idleSpritesheet}) left center;
+  background: url(${props => props.assets.images['spirit-bird-idle'].locator}) left center;
   animation: ${animations['idle']} ${props => props.duration}s steps(88) infinite;
   transform-origin: top left;
   transform: 
     scale(${props => props.scale})
     rotateY(${props => props.mirror ? 180 : 0}deg)
     translateX(-238px);
-`
+`)
 
 const sacrificeFrames = (position) => keyframes`
   from {
@@ -60,13 +57,13 @@ const sacrificeFrames = (position) => keyframes`
 export const getSacrifice = (endPosition) => {
   const keyframeAnim = sacrificeFrames(endPosition);
 
-  return styled.div`
+  return withAssets(styled.div`
     width: 60px;
     height: 81px;
-    background: url(${sacrificeSpritesheet}) left center;
+    background: url(${props => props.assets.images['sacrifice'].locator}) left center;
     transform-origin: top left;
     animation: 
       ${animations['sacrifice']} ${props => props.duration}s steps(17) infinite,
       ${keyframeAnim} 1.2s linear;
-  `
+  `)
 }

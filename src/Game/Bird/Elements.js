@@ -3,12 +3,6 @@ import styled, { keyframes, css } from 'styled-components';
 import sample from 'lodash/sample';
 import { withAssets } from 'Engine/AssetLoader';
 
-// import birdIdleSpritesheet from '../../../assets/images/bird-idle.png';
-// import birdSacrifice from '../../../assets/images/bird-sacrifice.png';
-// import birdSing01 from '../../../assets/images/birdSing10001.png';
-// import birdSing02 from '../../../assets/images/bird-sing-02.png';
-// import birdSing03 from '../../../assets/images/bird-sing-03.png';
-
 export const animations = {
   'idle': keyframes`
     from { background-position: 0 0; }
@@ -18,31 +12,19 @@ export const animations = {
   // 'sing': [ birdSing01, birdSing02, birdSing03 ]
 };
 
-export const Idle = withAssets((props) => {
-  const StyledComponent = styled.div`
-    width: 238px;
-    height: 222px;
-    background-image: url(${props.assets['images/bird-idle.png']});
-    background-origin: top left;
-    animation: ${animations['idle']} ${props.duration}s steps(88) infinite;
-  `
-
-  return <StyledComponent />
-});
-
-// export const Idle = styled.div`
-//   width: 238px;
-//   height: 222px;
-//   background-image: url(${birdIdleSpritesheet});
-//   background-origin: top left;
-//   animation: ${animations['idle']} ${props => props.duration}s steps(88) infinite;
-// `
+export const Idle = withAssets(styled.div`
+  width: 238px;
+  height: 222px;
+  background-image: url(${props => props.assets.images['bird-idle'].locator});
+  background-origin: top left;
+  animation: ${animations['idle']} ${props => props.duration}s steps(88) infinite;
+`);
 
 export const Sing = withAssets((props) => {
   const currentSprite = sample([
-    props.assets['images/birdSing10001.png'],
-    props.assets['images/bird-sing-02.png'],
-    props.assets['images/bird-sing-03.png']
+    props.assets.images['bird-sing-01'].locator,
+    props.assets.images['bird-sing-02'].locator,
+    props.assets.images['bird-sing-03'].locator
   ])
 
   const StyledComponent =styled.div`
@@ -62,7 +44,7 @@ export const Sacrifice = withAssets((props) => {
     width: 254px;
     height: 328px;
     background-origin: top left;
-    background-image: url(${props.assets['images/bird-sacrifice.png']});
+    background-image: url(${props.assets.images['bird-sacrifice'].locator});
     background-repeat: no-repeat;
     display: block;
   `;
@@ -87,8 +69,6 @@ export const AnimationContainer = styled.div`
       width: 254px;
     `
   }
-
-  /* border: 3px dashed lightgreen; */
 
   transform-origin: top right;
   transform: 
