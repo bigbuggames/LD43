@@ -1,7 +1,6 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-
-import explosionSheet from '../../../assets/images/explosion.png';
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import { withAssets } from "Engine/AssetLoader";
 
 const explosionAnimation = angle => keyframes`
   0% { 
@@ -20,14 +19,14 @@ const explosionAnimation = angle => keyframes`
   }
 `;
 
-const Piece = styled.div`
+const Piece = withAssets(styled.div`
   position: absolute;
   height: 1531px;
   width: 522px;
-  background-image: url(${explosionSheet});
+  background-image: url(${props => props.assets.images["explosion"].locator});
   transform-origin: top left;
   animation: ${props => props.animation} 3s steps(29) infinite;
-`;
+`);
 
 const generatePieceAngles = () => {
   const numberOfPieces = 7;

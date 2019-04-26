@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactHowler from 'react-howler' 
+import React from "react";
+import ReactDOM from "react-dom";
+import ReactHowler from "react-howler";
 
-import { Mandala, Implosion } from './Elements';
-import Explosion from './Explosion';
+import { Mandala, Implosion } from "./Elements";
+import Explosion from "./Explosion";
 
-import music from '../../../assets/sounds/volca-music.mp3';
+import music from "./assets/audio/volca-music.mp3";
 
 class Sun extends React.Component {
   state = {
@@ -44,16 +44,14 @@ class Sun extends React.Component {
   handleExplosion = () => {
     setTimeout(() => {
       if (this.state.level > 0 && this.state.explode === false) {
-
         this.setState({ level: this.state.level - 1, explode: true }, () => {
           setTimeout(() => {
             this.setState({ explode: false });
           }, 3000);
         });
-
       }
     }, 1300);
-  }
+  };
 
   componentDidMount() {
     this.automaticLevelChange(this.props.nextLevelInterval);
@@ -63,7 +61,7 @@ class Sun extends React.Component {
     if (
       prevProps.pressedKeys.toString() !== this.props.pressedKeys.toString()
     ) {
-      if (this.props.pressedKeys.includes(' ')) {
+      if (this.props.pressedKeys.includes(" ")) {
         this.handleExplosion();
       }
     }
@@ -73,12 +71,7 @@ class Sun extends React.Component {
     const boundary = this.state.levelBondaries[this.state.level];
     return (
       <>
-        <ReactHowler
-          src={music}
-          playing={true}
-          volume={0.5}
-          loop={true}
-        />
+        <ReactHowler src={music} playing={true} volume={0.5} loop={true} />
 
         {this.state.implode && (
           <Implosion
@@ -99,7 +92,6 @@ class Sun extends React.Component {
             duration={this.props.nextLevelInterval}
           />
         )}
-    
       </>
     );
   }

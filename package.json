@@ -22,6 +22,7 @@
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
     "clean-webpack-plugin": "^2.0.1",
+    "copy-webpack-plugin": "^5.0.2",
     "directory-named-webpack-plugin": "^4.0.1",
     "gh-pages": "^2.0.1",
     "rimraf": "^2.6.3",

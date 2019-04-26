@@ -1,23 +1,21 @@
-const webpack = require('webpack');
-const path = require('path');
-const merge = require('webpack-merge');
+const webpack = require("webpack");
+const path = require("path");
+const merge = require("webpack-merge");
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const config = require('../package.json');
-const common = require('./webpack.common.js');
+const config = require("../package.json");
+const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
-  mode: 'development',
-  entry: [
-    'webpack-hot-middleware/client'    
-  ],
-  devtool: 'cheap-eval-source-map',
+  mode: "development",
+  entry: ["webpack-hot-middleware/client"],
+  devtool: "cheap-eval-source-map",
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ 
+    new HtmlWebpackPlugin({
       title: config.name,
-      template: path.resolve(__dirname, '../assets/index.dev.html')
+      template: path.resolve(__dirname, "../public/index.dev.html")
     })
-  ],
+  ]
 });
